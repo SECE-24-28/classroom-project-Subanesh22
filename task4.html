@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f2f2f2;
+      justify-content: center;
+      margin-top: 100px;
+    }
+    .login-box {
+      background: white;
+      padding: 20px 30px;
+      width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #message {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Enter username">
+  <input type="password" id="password" placeholder="Enter password">
+
+  <button onclick="login()">Login</button>
+
+  <div id="message"></div>
+</div>
+
+<script>
+  // JSON user data
+  const users = [
+    { "username": "john", "password": "12345" },
+    { "username": "sara", "password": "abcde" },
+    { "username": "admin", "password": "admin123" }
+  ];
+
+  function login() {
+    const uname = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const msg = document.getElementById("message");
+
+    if (uname === "" || pass === "") {
+      msg.style.color = "red";
+      msg.innerHTML = "Fields cannot be empty!";
+      return;
+    }
+
+    // Check JSON data using conditionals
+    let found = false;
+
+    for (let user of users) {
+      if (user.username === uname && user.password === pass) {
+        found = true;
+        break;
+      }
+    }
+
+    if (found) {
+      msg.style.color = "green";
+      msg.innerHTML = "Login Success!";
+    } else {
+      msg.style.color = "red";
+      msg.innerHTML = "Invalid username or password!";
+    }
+  }
+</script>
+<h2>Simple Calculator</h2>
+
+  <input type="number" id="num1" placeholder="Enter first number">
+  <br><br>
+  
+  <input type="number" id="num2" placeholder="Enter second number">
+  <br><br>
+
+  <select id="operation">
+    <option value="add">Addition (+)</option>
+    <option value="sub">Subtraction (-)</option>
+    <option value="mul">Multiplication (*)</option>
+    <option value="div">Division (/)</option>
+  </select>
+  <br><br>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <h3 id="result"></h3>
+  <script src="./cal.js"></script>
+</body>
+</html>
